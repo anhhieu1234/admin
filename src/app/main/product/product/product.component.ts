@@ -80,13 +80,13 @@ export class ProductComponent extends BaseComponent implements OnInit {
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
-          item_image:value.item_id,
+          item_image:value.data_image,
           item_id:value.item_id,
           item_group_id:value.item_group_id,
           item_name:value.item_name,
-          item_price:value.item_price,
+          item_price: +value.item_price,
           item_mota:value.item_mota,
-          item_trangthai:value.item_trangthai           
+          item_trangthai:value.item_trangthai,           
           };
           console.log(tmp);
         this._api.post('/api/sanpham/create-sanpham/  ',tmp).takeUntil(this.unsubscribe).subscribe(res => {
@@ -96,17 +96,17 @@ export class ProductComponent extends BaseComponent implements OnInit {
           this.closeModal();
           });
       });
-    } else { 
+    }else { 
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
-          item_image:value.item_id,
+          item_image:value.data_image,
           item_id:value.item_id,
           item_group_id:value.item_group_id,
           item_name:value.item_name,
-          item_price:value.item_price,
+          item_price: +value.item_price,
           item_mota:value.item_mota,
-          item_trangthai:value.item_trangthai            
+          item_trangthai:value.item_trangthai,           
           };
         this._api.post('/api/sanpham/update-sanpham',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Cập nhật thành công');
@@ -130,7 +130,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
       'item_id': ['', Validators.required],
       'item_group_id': ['', Validators.required],
       'item_name': ['', Validators.required],
-      'item_price': ['', Validators.required],
+      'item_price': ['', [Validators.required]],
       'item_mota': ['', Validators.required],
       'item_trangthai': ['', Validators.required],
     }); 
@@ -160,7 +160,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
     this.isCreate = false;
     setTimeout(() => {
       $('#createsanphamModal').modal('toggle');
-      this._api.get('/api/sanpham/get-by-id/'+ row.user_id).takeUntil(this.unsubscribe).subscribe((res:any) => {
+      this._api.get('/api/sanpham/get-by-id/'+ row.item_id).takeUntil(this.unsubscribe).subscribe((res:any) => {
         this.sanpham = res; 
           this.formdata = this.fb.group({
             'item_name': [this.sanpham.item_name, Validators.required],
