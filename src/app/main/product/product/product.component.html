@@ -49,8 +49,6 @@
             <th style="text-align: left;">Tên Sản Phẩm</th>
             <th style="width: 300px; text-align: left;">Ảnh</th>
            <th style="width: 120px; text-align: left;">Giá</th>
-           <th style="width: 120px; text-align: left;">Mô Tả</th>
-            <th style="width: 120px; text-align: left;">Trạng Thái</th>
             <th style="width: 120px; text-align: left;">Tác vụ</th>
           </tr>
         </ng-template>
@@ -60,10 +58,8 @@
             <td>{{ item.item_id }}</td>
             <td>{{ item.item_group_id}}</td>
             <td>{{ item.item_name }}</td>
-            <td><img src="{{ item.item_image }}" width="50px" height="50px"></td>
-            <td>{{ item.item_price }}</td>
-            <td>{{ item.item_mota }}</td>
-            <td>{{ item.item_trangthai }}</td>
+            <td><img src="{{ item.item_image }}" width="150px" height="100px"></td>
+            <td>{{ item.item_price | currency: "VND" }}</td>
             <td class="action-col" >
               <div class="btn-group">
                 <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(item)">  

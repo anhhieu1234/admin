@@ -8,9 +8,6 @@
     </ul><!-- /.breadcrumb -->
     <div class="nav-search">
       <p class="pull-right no-margin">
-        <a (click)="createModal()" class="btn btn-success btn-xs">
-          <i class="fa fa-plus"></i>&nbsp;Thêm
-        </a>
       </p>
     </div>
   </div>
@@ -79,8 +76,7 @@
       <div class="modal-dialog modal-lg full-height-modal">
         <div class="modal-content">
           <div class="modal-header">
-            <h4  *ngIf="isCreate" class="modal-title">Nhập thông tin người dùng</h4>
-            <h4 *ngIf="!isCreate" class="modal-title">Sửa thông tin người dùng</h4>
+            <h4 *ngIf="!isCreate" class="modal-title">Xem Chi Tết </h4>
           </div>
           <form *ngIf="doneSetupForm" [formGroup]="formdata"  (ngSubmit)="onSubmit(formdata.value)" class="form-horizontal utehy-form">
             <div class="modal-body no-padding">
@@ -131,8 +127,8 @@
                     <td>{{its.ma_chi_tiet}}</td>
                     <td>{{its.item_id}}</td>
                     <td>{{its.item_name}}</td>
-                    <td><input type="number" value="{{its.so_luong}}" min=1></td>
-                    <td><input type="text" value="{{its.don_gia}}"></td>
+                    <td>{{its.so_luong}}</td>
+                    <td>{{its.don_gia}}</td>
                     <td style="float:right">{{its.so_luong*its.don_gia | currency:'VND'}}</td>
                   </tr>
                 </tbody>
